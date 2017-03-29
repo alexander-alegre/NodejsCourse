@@ -47,12 +47,16 @@ var addNote = (title, body) => {
 
 // get all notes
 var getAll = () => {
-    console.log('Showing all of the notes');
+    var notes = fetchNotes();
+    console.log(notes);
 }
 
 // get single note
 var getNote = (title) => {
-    console.log("Getting note: ", title);
+    var notes = fetchNotes();
+    var filteredNotes = notes.filter((note) => note.title === title);
+    // return notes.length == filteredNotes.length;
+    return filteredNotes[0];
 }
 
 // remove notes
@@ -65,6 +69,13 @@ var removeNote = (title) => {
     saveNotes(filteredNotes);
 
     return notes.length != filteredNotes.length;
+}
+
+
+var logNote = (note) => {
+    console.log('--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Nody: ${note.body}`);
 }
 
 /*
