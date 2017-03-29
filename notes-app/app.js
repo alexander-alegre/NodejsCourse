@@ -2,7 +2,18 @@
 const fs = require('fs');
 const lodash = require('lodash');
 const yargs = require('yargs');
-const argv = yargs.argv;
+const argv = yargs.command('add', 'Add a new note', {
+	title: {
+		describe: 'Title of note',
+		demand: true,
+		alias: 't'
+	},
+	body: {
+		describe: 'Body of the note',
+		demand: true,
+		alias: 'b'
+	}
+}).help().argv;
 
 // my files
 const notes = require('./notes.js');
