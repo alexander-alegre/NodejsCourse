@@ -1,19 +1,28 @@
-// node modules
-const fs = require('fs');
-const lodash = require('lodash');
-const yargs = require('yargs');
-const argv = yargs.command('add', 'Add a new note', {
+// constant variables
+const titleCommand = {
 	title: {
 		describe: 'Title of note',
 		demand: true,
 		alias: 't'
-	},
+	}
+}
+const bodyCommand = {
 	body: {
 		describe: 'Body of the note',
 		demand: true,
 		alias: 'b'
 	}
-}).help().argv;
+}
+// node modules
+const fs = require('fs');
+const lodash = require('lodash');
+const yargs = require('yargs');
+const argv = yargs
+.command('add', 'Add a new note', titleCommand, bodyCommand)
+.command('list', 'List all notes')
+.command('read', 'Read a note', titleCommand)
+.command('remove', 'Remove a note', titleCommand)
+.help().argv;
 
 // my files
 const notes = require('./notes.js');
